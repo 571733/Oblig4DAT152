@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>DAT152Application1</display-name>
+
+	<filter>
+		<filter-name>PreventionFilter</filter-name>
+		<filter-class>no.hvl.dat152.obl4.controller.PreventionFilter</filter-class>
+		<init-param>
+			<param-name>mode</param-name>
+			<param-value>SAMEORIGIN</param-value>	
+		</init-param>
+		<init-param>
+			
+			<param-name>mode1</param-name>
+			<param-value>NOSNIFF</param-value>
+		</init-param>
+	</filter>
+
+	<!-- use the Deny version to prevent anyone, including yourself, from framing 
+		the page -->
+	<filter-mapping>
+		<filter-name>PreventionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<resource-ref>
+		<description>DB Connection</description>
+		<res-ref-name>jdbc/DAT152</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+		<res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+</web-app>
