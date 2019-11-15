@@ -19,6 +19,7 @@ public class UpdateRoleServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("token", request.getSession().getAttribute("token"));
 		doPost(request, response);
 	}
 
@@ -26,6 +27,7 @@ public class UpdateRoleServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		request.removeAttribute("message");
+		request.setAttribute("token", request.getSession().getAttribute("token"));
 
 		boolean successfulRoleUpdate = false;
 		
@@ -38,7 +40,7 @@ public class UpdateRoleServlet extends HttpServlet {
 		
 		if(username != null) {
 			
-			if (RequestHelper.isLoggedIn(request) & user.getRole().equals(Role.ADMIN.toString())) {
+			if (RequestHelper.isLoggedIn(request) && user.getRole().equals(Role.ADMIN.toString()) && RequestHelper.CRSF(request)) {
 				
 				AppUserDAO userDAO = new AppUserDAO();
 				

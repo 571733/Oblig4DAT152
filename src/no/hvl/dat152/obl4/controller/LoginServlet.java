@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import no.hvl.dat152.obl4.database.AppUser;
 import no.hvl.dat152.obl4.database.AppUserDAO;
+import no.hvl.dat152.obl4.util.CRSFHandler;
 import no.hvl.dat152.obl4.util.Role;
 
 @WebServlet("/login")
@@ -32,17 +33,17 @@ public class LoginServlet extends HttpServlet {
 
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-
+		
 		if (username != null && password != null) {
 
 			AppUserDAO userDAO = new AppUserDAO();
 			AppUser authUser = userDAO.getAuthenticatedUser(username, password);
-
+				
 			if (authUser != null) {
 				successfulLogin = true;
 				request.getSession().setAttribute("user", authUser);
 				request.getSession().setAttribute("updaterole", "");
-				request.getSession().setAttribute("CSRF-Token", userDAO.generateCSRFToken());
+				request.getSession().setAttribute("token", CRSFHandler.generateCRSFToken(request));
 				
 				
 				// admin issues

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 </head>
 <body>
 	<h3>Log in</h3>
-	<p><font color="red">${message}</font></p>
+	<p><font color="red"><c:out value="${message}" /></font></p>
 	<form method="post">
 		<p>Username <input type="text" name="username" value="${username}"/></p>
 		<p>Password <input type="password" name="password" value="${password}"/></p>

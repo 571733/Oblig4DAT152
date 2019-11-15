@@ -19,6 +19,7 @@ public class UpdatePasswordServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		//request.getRequestDispatcher("updatepassword.jsp").forward(request, response);
+		request.setAttribute("token", request.getSession().getAttribute("token"));
 		doPost(request, response);
 	}
 
@@ -26,6 +27,7 @@ public class UpdatePasswordServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		request.removeAttribute("message");
+		request.setAttribute("token", request.getSession().getAttribute("token"));
 
 		boolean successfulPasswordUpdate = false;
 		
@@ -35,7 +37,7 @@ public class UpdatePasswordServlet extends HttpServlet {
 				.getParameter("confirm_passwordnew"));
 		
 		
-		if (RequestHelper.isLoggedIn(request)) {
+		if (RequestHelper.isLoggedIn(request) && RequestHelper.CRSF(request)) {
 			
 			AppUser user = (AppUser) request.getSession().getAttribute("user");
 			

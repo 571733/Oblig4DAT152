@@ -22,7 +22,7 @@ public class MyDetailsServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		if (RequestHelper.isLoggedIn(request)) {
-			
+			request.setAttribute("token", request.getSession().getAttribute("token"));
 			AppUser user = (AppUser) request.getSession().getAttribute("user");
 
 			SearchItemDAO searchItemDAO = new SearchItemDAO();

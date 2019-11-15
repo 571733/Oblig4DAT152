@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="no.hvl.dat152.obl4.dictionary.DictionaryDAO" %>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 </head>
 <body>
 	<h3>Register new user</h3>
-	<p><font color="red">${message}</font></p>
+	<p><font color="red"><c:out value="${message}"/></font></p>
 	<form method="post">
 		<p>Username <input type="text" name="username" /></p>
 		<p>Password <input type="password" name="password" /></p>

@@ -217,14 +217,5 @@ public AppUser getAuthenticatedUser(String username, String password) {
   public String generatePassHash(String password) {
     return DigestUtils.md5Hex(password);
   }
-  
-  public String generateCSRFToken() {
-	  SecureRandom sr = new SecureRandom();
-	  byte[] csrf = new byte[16];
-	  sr.nextBytes(csrf);
-	  return DigestUtils.md5Hex(csrf);
-  }
-  
-
 }
 
